@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Profile Icon Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yantramanav:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fontfaceobserver/2.1.0/fontfaceobserver.standalone.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-12">
+        <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">Profile Icon Generator</h1>
+        <div class="app-container p-8 mx-auto bg-white shadow-lg rounded-xl">
+            <div class="grid grid-cols-7 gap-4 mb-8" id="letterPicker">
+                <!-- Add letter picker squares here -->
+            </div>
+            <br>
+            <div class="grid grid-cols-7 gap-4 mb-8" id="colorPicker">
+                <!-- Add color picker squares here -->
+            </div>
+            <br>
+            <div class="flex justify-center mb-8">
+                <canvas id="letterCanvas" width="200" height="200"></canvas>
+            </div>
+            <br>
+            <div class="text-center">
+                <button id="downloadBtn" class="bg-blue-700 text-white font-bold py-2 px-4 rounded">Download Icon</button>
+            </div>
+        </div>
+        <div class="mt-8 text-center">
+            <h2 class="text-xl font-bold mb-4 text-gray-700">How to Set Your Google Profile Icon</h2>
+            <ol class="text-sm list-decimal list-inside text-left mx-auto max-w-xl text-gray-600">
+                <li>Download the image by clicking the "Download Icon" button.</li>
+                <li>Sign in to your Google Account.</li>
+                <li>Open your Google Account settings by clicking your profile picture in the top-right corner and selecting "Manage your Google Account."</li>
+                <li>Under the "Personal info" tab, click on the profile icon or the current profile picture.</li>
+                <li>Click on "Set Profile Picture" or "Change" (if you already have a profile picture).</li>
+                <li>Select the downloaded image from your device and click "Open."</li>
+                <li>Adjust the cropping if necessary, then click "Done" to save your new profile icon.</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="text-center text-gray-400 text-sm pb-4">
+        <p>Created by <a href="https://www.kevinguay.com" target="_blank" class="underline hover:text-gray-900">Kevin Guay</a>. <a href="mailto:iconmaker@kevinguay.com" target="_blank" class="underline hover:text-gray-900">Feedback</a> welcome.</p>
+        <p><a href="#" id="privacyPolicyLink" class="underline hover:text-gray-900">Privacy Policy</a></p>
+    </footer>
+    <div id="privacyPolicyModal" class="modal hidden fixed inset-0 flex items-center justify-center p-4 bg-gray-100 bg-opacity-80 max-h-50">
+      <div class="bg-white p-6 w-full md:w-2/3 lg:w-2/3 xl:w-2/3 rounded shadow-lg overflow-y-scroll max-h-full">
+            <div class="flex justify-between items-start">
+                <h2 class="text-2xl font-bold mb-4">Privacy Policy</h2>
+                <button id="closeModal" class="text-gray-600 hover:text-gray-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                      <path d="M6 6l12 12"></path>
+                      <path d="M18 6L6 18"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Add your privacy policy content here -->
+            <div class="text-gray-700 leading-relaxed">
+                <h3 class="text-lg font-semibold mb-2">Privacy Policy</h3>
+                <p>Last updated: March 30, 2023</p>
+                <p>Kevin Guay operates the Google Profile Icon Generator website (the "Service"). This Privacy Policy tells you how we collect, use, and share your information when you use our Service.</p>
+                <p>By using the Service, you agree to this Privacy Policy.</p>
+    
+                <h3 class="text-lg font-semibold mt-4 mb-2">Information Collection</h3>
+                <p>We collect two types of information to provide and improve our Service:</p>
+                <ol class="list-decimal list-inside">
+                    <li>
+                        <p><strong>Personal Data</strong> We may ask for your email address to provide customer support or notify you about changes to our Service.</p>
+                    </li>
+                    <li>
+                        <p><strong>Usage Data</strong> We collect information on how you use the Service, like your IP address, browser type, and the pages you visit.</p>
+                    </li>
+                    <li>
+                        <p><strong>Cookies</strong> We use cookies to help our Service work better. You can tell your browser not to accept cookies, but some parts of our Service may not work properly.</p>
+                    </li>
+                </ol>
+
+                <h3 class="text-lg font-semibold mt-4 mb-2">How We Use Your Data</h3>
+                <p>We use your data to:</p>
+                <ul class="list-disc list-inside">
+                    <li>Provide and maintain our Service</li>
+                    <li>Notify you about changes to our Service</li>
+                    <li>Give you customer support</li>
+                    <li>Improve our Service</li>
+                    <li>Monitor usage of our Service</li>
+                    <li>Fix technical issues</li>
+                </ul>
+
+                <h3 class="text-lg font-semibold mt-4 mb-2">Sharing Your Data</h3>
+                <p>We may share your data if needed to:</p>
+                <ul class="list-disc list-inside">
+                    <li>Follow the law</li>
+                    <li>Protect our rights or property</li>
+                    <li>Investigate possible misuse of our Service</li>
+                    <li>Keep users safe</li>
+                    <li>Avoid legal problems</li>
+                </ul>
+
+                <h3 class="text-lg font-semibold mt-4 mb-2">Data Security</h3>
+                <p>We try to protect your data, but no method is 100% secure. We cannot guarantee complete security of your data.</p>
+
+                <h3 class="text-lg font-semibold mt-4 mb-2">Third-Party Service Providers</h3>
+                <p>We may use other companies to help us provide, maintain, or analyze our Service. These companies may have access to your data but only to do their job and keep your data safe.</p>
+
+                <h3 class="text-lg font-semibold mt-4 mb-2">Changes to This Privacy Policy</h3>
+                <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+            </div>
+        </div>
+    </div>    
+</body>
+
+
+
+<style>
+  .selected {
+      border: 1.5px solid white;
+  }
+  .app-container {
+      max-width: 680px;
+  }
+  #letterPicker,
+  #colorPicker {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+  }
+
+  .letterSquare,
+  .colorSquare {
+      width: 30px;
+      height: 30px;
+      margin: 5px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      overflow: hidden;
+  }
+
+  .letterSquare {
+      color: #ffffff;
+      font-size: 18px;
+  }
+
+  #letterCanvas {
+      border-radius: 50%;
+      overflow: hidden;
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+  }
+ 
+</style>
+
+<script>
+  const canvas = document.getElementById('letterCanvas');
+  const ctx = canvas.getContext('2d');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const colorPicker = document.getElementById('colorPicker');
+  const letterPicker = document.getElementById('letterPicker');
+
+  const colors = [
+      'AA47BC', '7A1FA2', '78909C', '465A65', 'EC407A', 'C2175B', '5C6BC0', '0288D1',
+      '00579C', '0098A6', '00887A', '004C3F', '689F39', '33691E', '8C6E63', '5D4038',
+      '7E57C2', '512DA7', 'EF6C00', 'F5511E', 'BF360C'
+  ];
+
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+  const defaultColor = '00579C';
+  const defaultLetter = 'A';
+
+  let selectedColor = defaultColor;
+  let selectedLetter = defaultLetter;
+
+  let selectedColorSquare;
+  let selectedLetterSquare;
+
+  ctx.font = '550px Yantramanav';
+  ctx.fillStyle = 'white';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+
+  function drawLetter(letter, color) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.width = 1000;
+      canvas.height = 1000;
+      ctx.fillStyle = color;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'white';
+      ctx.font = '550px Yantramanav';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      const metrics = ctx.measureText(letter);
+      const yOffset = metrics.actualBoundingBoxAscent / 2 - metrics.actualBoundingBoxDescent / 2;
+      ctx.fillText(letter, canvas.width / 2, canvas.height / 2 + yOffset);
+  }
+
+
+  drawLetter(defaultLetter, `#${defaultColor}`);
+
+  function createColorPicker() {
+      for (const color of colors) {
+          const colorSquare = document.createElement('div');
+          colorSquare.classList.add('colorSquare');
+          colorSquare.style.backgroundColor = `#${color}`;
+          colorSquare.addEventListener('click', () => {
+              if (selectedColorSquare) {
+                  selectedColorSquare.classList.remove('selected');
+              }
+              selectedColorSquare = colorSquare;
+              selectedColorSquare.classList.add('selected');
+              drawLetter(selectedLetter, `#${color}`);
+              selectedColor = color;
+          });
+
+          if (color === defaultColor) {
+              selectedColorSquare = colorSquare;
+              selectedColorSquare.classList.add('selected');
+          }
+
+          colorPicker.appendChild(colorSquare);
+      }
+  }
+
+  function createLetterPicker() {
+      for (const letter of letters) {
+          const letterSquare = document.createElement('div');
+          letterSquare.classList.add('letterSquare');
+          letterSquare.style.backgroundColor = `#666`;
+          letterSquare.textContent = letter;
+          letterSquare.addEventListener('click', () => {
+              if (selectedLetterSquare) {
+                  selectedLetterSquare.classList.remove('selected');
+              }
+              selectedLetterSquare = letterSquare;
+              selectedLetterSquare.classList.add('selected');
+              selectedLetter = letter;
+              drawLetter(letter, `#${selectedColor}`);
+          });
+
+          if (letter === defaultLetter) {
+              selectedLetterSquare = letterSquare;
+              selectedLetterSquare.classList.add('selected');
+          }
+
+          letterPicker.appendChild(letterSquare);
+      }
+  }
+  
+  const fontObserver = new FontFaceObserver('Yantramanav');
+
+  fontObserver.load().then(() => {
+      drawLetter(defaultLetter, `#${defaultColor}`);
+      createLetterPicker();
+  }).catch((err) => {
+      console.error('Error loading Yantramanav font:', err);
+  });
+  
+
+  createColorPicker();
+
+  downloadBtn.addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = `google-icon-${selectedLetter}.png`;
+      link.click();
+  });
+  
+  const privacyPolicyModal = document.getElementById('privacyPolicyModal');
+  const closeModal = document.getElementById('closeModal');
+  const privacyPolicyLink = document.getElementById('privacyPolicyLink');
+
+  privacyPolicyLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      privacyPolicyModal.classList.remove('hidden');
+  });
+
+  closeModal.addEventListener('click', () => {
+      privacyPolicyModal.classList.add('hidden');
+  });
+
+  window.addEventListener('click', (e) => {
+      if (e.target === privacyPolicyModal) {
+          privacyPolicyModal.classList.add('hidden');
+      }
+  });
+  
+</script>
+</html>
